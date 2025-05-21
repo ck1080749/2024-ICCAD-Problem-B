@@ -13,6 +13,7 @@
 #include <string>
 #include <algorithm>
 #include <cfloat>
+#include <list>
 
 #ifdef ENABLE_DEBUG_LGZ
 #define DEBUG_LGZ(message) std::cout << "[LEGALIZER] " << message << std::endl
@@ -22,21 +23,22 @@
 
 class Node;
 class Row;
-class Legalizer{
+class Legalizer
+{
 private:
-    Manager& mgr;
+    Manager &mgr;
     std::vector<Node *> ffs;
     std::vector<Node *> gates;
     std::vector<Row *> rows;
     Timer timer;
 
 public:
-    explicit Legalizer(Manager& mgr);
+    explicit Legalizer(Manager &mgr);
     ~Legalizer();
     void initial();
     void run();
-    Coor FindPlace(const Coor &coor, Cell * cell);
-    void UpdateRows(FF* newFF);
+    Coor FindPlace(const Coor &coor, Cell *cell);
+    void UpdateRows(FF *newFF);
 
 private:
     // void CheckIfMBFFMove();
@@ -47,22 +49,20 @@ private:
     void SliceRowsByGate();
     void Tetris();
     void LegalizeWriteBack();
-    
 
     // Helper Function
-    static void UpdateXList(double start, double end, std::list<XTour> & xList);
+    static void UpdateXList(double start, double end, std::list<XTour> &xList);
     size_t FindClosestRow(const Coor &coor);
     static int FindClosestSubrow(Node *ff, Row *row);
-    void PredictFFLGPlace(const Coor &coor, Cell* cell, size_t row_idx, bool &placeable, double &minDisplacement, Coor &newCoor);
-    double PlaceFF(Node *ff, size_t row_idx, bool& placeable);
+    void PredictFFLGPlace(const Coor &coor, Cell *cell, size_t row_idx, bool &placeable, double &minDisplacement, Coor &newCoor);
+    double PlaceFF(Node *ff, size_t row_idx, bool &placeable);
     bool ContinousAndEmpty(double startX, double startY, double w, double h, int row_idx);
     static double getDisplacement(const Coor &Coor1, const Coor &Coor2);
-    
+
     friend class DetailPlacement;
 };
 
 #endif
-
 
 // Backup
 // #include <iostream>
