@@ -1,0 +1,5 @@
+- [ ] modify optimization scheme
+- [ ] modify placement scheme
+- [ ] modify routing scheme
+- [ ] a more precise timing module
+- **DO NOT MODIFY THE LEGALIZER, OR THE SOLUTION MIGHT BE ILLEGAL!**
