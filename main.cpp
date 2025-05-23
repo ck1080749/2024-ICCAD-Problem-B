@@ -2,11 +2,13 @@
 #include <iostream>
 #include <vector>
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 
     std::cout << std::fixed << std::setprecision(2);
 
-    if (argc < 2){
+    if (argc < 2)
+    {
         std::cerr << "Usage: " << argv[0] << " <inputfile> <outputfile>" << std::endl;
         return EXIT_FAILURE;
     }
@@ -17,7 +19,7 @@ int main(int argc, char *argv[]){
     mgr.parse(argv[1]);
     mgr.libScoring();
     mgr.getOverallCost(cost_verbose, 0);
-    mgr.preprocess();
+    mgr.preprocess(); // debank + preplacement
     mgr.getOverallCost(cost_verbose, 0);
     mgr.dumpVisual("Preprocessor.out");
 
@@ -33,7 +35,7 @@ int main(int argc, char *argv[]){
     mgr.getOverallCost(cost_verbose, 0);
     mgr.dumpVisual("Banking.out");
 
-    mgr.postBankingOptimize();
+    mgr.postBankingOptimize(); // postplacement
     mgr.getOverallCost(cost_verbose, 0);
     mgr.dumpVisual("PostCG.out");
 
@@ -42,7 +44,7 @@ int main(int argc, char *argv[]){
     mgr.dumpVisual("Legalize.out");
     mgr.checker();
 
-    mgr.detailplacement();
+    mgr.detailplacement(); // detailplacement
     mgr.getOverallCost(cost_verbose, 1);
     mgr.dumpVisual("DetailPlacement.out");
     mgr.checker();
