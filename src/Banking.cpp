@@ -176,7 +176,8 @@ void Banking::doClustering()
 
     for (const auto &bitLib : orderBitMap) // 1-bit->2-bit, 2-bit->+-bit...
     {
-        Cell *chooseCell = bitLib.second[0];   // choose the best performing cell (with lowest cost). TODO: maybe a more flexible choosing scheme?
+        // std::cerr << bitLib.second.size() << std::endl;
+        Cell *chooseCell = bitLib.second[0];   // choose the best performing cell (with lowest cost).
         int targetBit = chooseCell->getBits(); // the cells in same bitLib should have same bit size.
         if (targetBit == 1)
             continue;

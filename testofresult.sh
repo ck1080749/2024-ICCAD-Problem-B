@@ -10,7 +10,7 @@ mkdir -p "$DIRNAME"
 
 # Run the command 5 times
 i=1
-while [ $i -le 5 ]; do
+while [ $i -le 4 ]; do
 #   echo "Running iteration: $i"
   echo "\e[1;30;43mRunning iteration: $i\e[0m"
   make "run$i" | tee "$DIRNAME/run$i.txt"
