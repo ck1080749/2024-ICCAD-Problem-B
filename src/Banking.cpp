@@ -47,39 +47,41 @@ void Banking::bitOrdering() // sort the FFs using cost-per-bit
 
 bool Banking::chooseCandidateFF(FF *nowFF, std::vector<PointWithID> &resultFFs, std::vector<PointWithID> &toRemoveFFs, std::vector<FF *> &FFToBank, const int &targetBit)
 {
+    // result ffs: the neareast "target bits" FFs
+    // nowff: the merge pivot
     std::vector<std::pair<int, double>> nearFFs;
     PointWithID curFF;
+
+    // calculate the distance of ffs
     for (int i = 0; i < (int)resultFFs.size(); i++)
     {
         FF *ff = FFs[resultFFs[i].second];
         double dis = HPWL(nowFF->getNewCoor(), ff->getNewCoor());
         if (dis == 0)
         {
-            curFF = resultFFs[i];
+            curFF = resultFFs[i]; // specially store the pivot
         }
         else
         {
-            // ff->updateSlack();
-            // double slack = FFs[resultFFs[i].second]->getTimingSlack("D") - std::sqrt(dis)*mgr.DisplacementDelay;
             nearFFs.push_back({i, dis});
         }
     }
 
-    if (nearFFs.size() > 0)
+    if (nearFFs.size() > 0) // if there's any ffs that is near te nodes
     {
-        sortFFs(nearFFs);
+        sortFFs(nearFFs); // use distance to sort the ffs
         toRemoveFFs.push_back(curFF);
         FFToBank.push_back(FFs[curFF.second]);
         int bitSum = FFs[curFF.second]->getCell()->getBits();
         int i = 0;
-        while (bitSum < targetBit && i < (int)nearFFs.size())
+        while (bitSum < targetBit && i < (int)nearFFs.size()) // check all the near ffs
         {
             PointWithID ffPoint = resultFFs[nearFFs[i].first];
             FF *ff = FFs[ffPoint.second];
-            if (bitSum + ff->getCell()->getBits() <= targetBit)
+            if (bitSum + ff->getCell()->getBits() <= targetBit) // the bit size is large enough -> essentially choose the neareast avalable ffs to merge. TODO: examine other possibilities?
             {
-                toRemoveFFs.push_back(ffPoint);
-                FFToBank.push_back(ff);
+                toRemoveFFs.push_back(ffPoint); // store the position
+                FFToBank.push_back(ff);         // store the ff object
                 bitSum += ff->getCell()->getBits();
             }
             i++;
@@ -172,10 +174,10 @@ void Banking::doClustering()
     }
     std::map<int, std::vector<Cell *>> orderBitMap(mgr.Bit_FF_Map.begin(), mgr.Bit_FF_Map.end());
 
-    for (const auto &bitLib : orderBitMap) // 1-bit->2-bit, 2-bit->4-bit...
+    for (const auto &bitLib : orderBitMap) // 1-bit->2-bit, 2-bit->+-bit...
     {
-        Cell *chooseCell = bitLib.second[0]; // choose a smallest cell as representative. for easy placing.
-        int targetBit = chooseCell->getBits();
+        Cell *chooseCell = bitLib.second[0];   // choose the best performing cell (with lowest cost). TODO: maybe a more flexible choosing scheme?
+        int targetBit = chooseCell->getBits(); // the cells in same bitLib should have same bit size.
         if (targetBit == 1)
             continue;
         DEBUG_BAN("Cluster " + std::to_string(targetBit) + " Bit MBFF");
@@ -216,7 +218,7 @@ void Banking::doClustering()
                 }
                 std::vector<PointWithID> resultFFs, toRemoveFFs; // what is result ffs?
                 resultFFs.reserve(mgr.MaxBit);
-                rtree.query(bgi::nearest(Point(nowFF->getNewCoor().x, nowFF->getNewCoor().y), mgr.MaxBit), std::back_inserter(resultFFs)); // choose nearsetr mgr.MaxBit merge
+                rtree.query(bgi::nearest(Point(nowFF->getNewCoor().x, nowFF->getNewCoor().y), mgr.MaxBit), std::back_inserter(resultFFs)); // choose nearset mgr.MaxBit merge, TODO: why is mgr.MaxBit here?
                 std::vector<FF *> FFToBank;
                 bool isChoose = chooseCandidateFF(nowFF, resultFFs, toRemoveFFs, FFToBank, targetBit); // TODO: can modify this to chooose more ff
                 // result ffs: the banked mbff, toremoveffs: the ffs that are chosen to being banked, ff to bank: same as toremoveffs but uses ff object
@@ -231,10 +233,10 @@ void Banking::doClustering()
 
                     // if(mgr.getCostDiff(clusterCoor, chooseCell, FFToBank) > 0)
                     //     continue;
-                    if (CostCompare(clusterCoor, chooseCell, FFToBank) < 0) // if no improvement,
+                    if (CostCompare(clusterCoor, chooseCell, FFToBank) < 0) // if no improvement, don' apply
                         continue;
 
-                    // a new FF is chosen, legalize it.
+                    // a new FF is chosen, legalize it. DO NOT MODIFY!
                     FF *newFF = mgr.bankFF(clusterCoor, chooseCell, FFToBank);
                     mgr.legalizer->UpdateRows(newFF);
                     newFF->setIsLegalize(true);

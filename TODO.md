@@ -5,25 +5,28 @@
 (their procedure seems stable, i.e. every execution generates same result.)
 ### Basic ideas
 - [ ] modify optimization scheme
-- [ ] modify placement scheme
-- [ ] modify routing scheme
-- [*] a more precise timing module and wire length estimator -> hard to modify under current structure.
+- [*] ~~modify placement scheme~~
+- [*] ~~modify routing scheme~~
+- [*] ~~a more precise timing module and wire length estimator -> hard to modify under current structure.~~
 ### Things that can be done:
-- [ ] The cost function is different (no density constraint in cost.)
+- [*] ~~The cost function is different (no density constraint in cost.)~~
 - [ ] mainly modify `Manager::preprocess()`, `Manager::banking()`, `Manager::postBankingOptimize()`,`Manager::detailplacement()` and something it used
   - [*] `Manager::preprocess()`: nothing can be modified quickly
   - [ ] `Manager::banking()`
   - [ ] `Manager::postBankingOptimize()`
-  - [ ] `Manager::detailplacement()`
-- [ ] Timing model. originally use a weird model, now we can use FLUTE (`j29.pdf`, where to locate it?) to generate steiner points
-- [ ] use a analytical approach to find the proper estimated length (`an.pdf`, `Gradient` class and its constructor parameters: what is being feeded into the class?)
+  - [ ] `Manager::detailplacement()` -> prbably sholdn't do this
+- [*] ~~Timing model. originally use a weird model, now we can use FLUTE (`j29.pdf`, where to locate it?) to generate steiner points~~
+- [*] ~~use a analytical approach to find the proper estimated length (`an.pdf`, `Gradient` class and its constructor parameters: what is being feeded into the class?)~~
   - The HPWL measured in the `Preprocess::updateSlack()` is basically impossible to modify. but since it only includes two node (prev gate and current gate), there should not be a problem though.
   - harder to do under current scheme.
-- [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins"
-- [ ] examine `Preprocess::run()` & `Preprocess::optimalFFlocation()`
-- [ ] examine `postBankingOptimizer::run()`
-- [ ] enlarge the choosing window size to enable more merging
-- [ ] ~~maybe we can slightly adjust the position of the combs~~
+- [*] ~~maybe we can slightly adjust the position of the combs~~
+
+### final thoughts
+- [ ] **choose a "best suiting cell" during `void Banking::doClustering()`, and further optimize in `postBankingOptimizer::run()`**
+- [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins" (in `Legalizer::FindPlace()`)
+- [ ] examine the difference `postBankingOptimizer::run()` `Preprocess::optimalFFlocation()`
+- [ ] enlarge the choosing window size to enable more merging -> no presence of windows, how to modify
+- [ ] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) 
 ### report requirements
 - [ ] a block/ flow diagram
 - [ ] introduction of each test case
@@ -51,7 +54,7 @@
   2. select one of the ffs 
   3. find the neareast ffs and try to merge them
 * we can try different ff cells when merging?
-
+* `Banking::chooseCandidateFF(...)` examines some neareast nodes to check, but only selects some a smaller number of it (target bit) to merge
 ### post banking optimize
 * only optimize position, maybe try to optimize cell selection as well
 
