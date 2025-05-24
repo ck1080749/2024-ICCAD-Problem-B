@@ -14,16 +14,14 @@
 Should install Markdown Preview Mermaid Support in vscode
 
 ```mermaid
-graph TD;
-    Start-->Parser;
-    Parser-->Cell_library_Scoring;
-    Cell_library_Scoring-->Debanking_All_MBFF;
-    Debanking_All_MBFF-->Pre-GlobalPlacement;
-    Pre-GlobalPlacement-->Legalize_All_single-bit_FF;
-    Legalize_All_single-bit_FF-->MeanShift_Clustering;
-    MeanShift_Clustering-->Post-GlobalPlacement;
-    Post-GlobalPlacement-->Legalize;
-    Legalize-->DetailPlacement;
+flowchart TD;
+    A(Start)-->B(Parser);
+    B-->C(Cell_library_Scoring);
+    C-->D(Debanking_All_MBFF);
+    D-->E(Pre-GlobalPlacement-and-Legalize);
+    E-->F(Banking);
+    F-->G(Post-GlobalPlacement-and-Legalize);
+    G-->DetailPlacement;
 ```
 
 ## Usage
