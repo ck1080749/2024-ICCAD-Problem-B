@@ -180,31 +180,36 @@ Coor Legalizer::FindPlace(const Coor &coor, Cell *cell)
 
     bool placeable = true;
     PredictFFLGPlace(coor, cell, closest_row_idx, placeable, minDisplacement, newCoor);
-    int down_row_idx = closest_row_idx - 1;
-    int up_row_idx = closest_row_idx + 1;
-    // local search down
-    while (down_row_idx >= 0 && std::abs(coor.y - rows[down_row_idx]->getStartCoor().y) < minDisplacement)
+
+    for (int row_delta = 1; row_delta < 3; row_delta++) // expand the search region to facilitate merges
     {
-        if (!rows[down_row_idx]->hasCell(cell))
+        int down_row_idx = closest_row_idx - row_delta;
+        int up_row_idx = closest_row_idx + row_delta;
+
+        // local search down
+        while (down_row_idx >= 0 && std::abs(coor.y - rows[down_row_idx]->getStartCoor().y) < minDisplacement)
         {
-            placeable = true;
-            PredictFFLGPlace(coor, cell, down_row_idx, placeable, minDisplacement, newCoor);
-            if (!placeable)
-                rows[down_row_idx]->addRejectCell(cell);
+            if (!rows[down_row_idx]->hasCell(cell))
+            {
+                placeable = true;
+                PredictFFLGPlace(coor, cell, down_row_idx, placeable, minDisplacement, newCoor);
+                if (!placeable)
+                    rows[down_row_idx]->addRejectCell(cell);
+            }
+            down_row_idx--;
         }
-        down_row_idx--;
-    }
-    // local search up
-    while (up_row_idx < (int)rows.size() && std::abs(coor.y - rows[up_row_idx]->getStartCoor().y) < minDisplacement)
-    {
-        if (!rows[up_row_idx]->hasCell(cell))
+        // local search up
+        while (up_row_idx < (int)rows.size() && std::abs(coor.y - rows[up_row_idx]->getStartCoor().y) < minDisplacement)
         {
-            placeable = true;
-            PredictFFLGPlace(coor, cell, up_row_idx, placeable, minDisplacement, newCoor);
-            if (!placeable)
-                rows[up_row_idx]->addRejectCell(cell);
+            if (!rows[up_row_idx]->hasCell(cell))
+            {
+                placeable = true;
+                PredictFFLGPlace(coor, cell, up_row_idx, placeable, minDisplacement, newCoor);
+                if (!placeable)
+                    rows[up_row_idx]->addRejectCell(cell);
+            }
+            up_row_idx++;
         }
-        up_row_idx++;
     }
     return newCoor;
 }
@@ -498,7 +503,7 @@ void Legalizer::PredictFFLGPlace(const Coor &coor, Cell *cell, size_t row_idx, b
         for (int x = alignedStartX; x <= subrow->getEndX() && x != rows[row_idx]->getEndX(); x += rows[row_idx]->getSiteWidth())
         {
             Coor currCoor = Coor(x, rows[row_idx]->getStartCoor().y);
-            if (getDisplacement(coor, currCoor) > minDisplacement)
+            if (getDisplacement(coor, currCoor) > minDisplacement) // if current placable pos is larger than minium position
             {
                 subrowSkip = true;
                 skip = true;

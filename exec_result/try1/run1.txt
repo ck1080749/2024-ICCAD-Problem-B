@@ -39,7 +39,7 @@ Final statistic
 [LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 0.000098
+[TIMER] Elapsed time: 0.000026
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 593.355909
@@ -58,7 +58,7 @@ Final statistic
 [BANKING] [LIB MBFF SCORE]
 [BANKING] 		SVT_FF_1(1): 148.081136
 [BANKING] 		SVT_FF_2(2): 263.031408
-[TIMER] Elapsed time: 0.000006
+[TIMER] Elapsed time: 0.000007
 [BANKING] [CLUSTER RESULT]
 [BANKING] 		FF1 : 4
 [BANKING] 		FF2 : 0
@@ -103,7 +103,7 @@ Final statistic
 [LEGALIZER] Progress: 87% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 0.000036
+[TIMER] Elapsed time: 0.000028
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 726.830755
@@ -156,8 +156,8 @@ Final statistic
 [CHECKER] Check On Site
 [CHECKER] All Check Pass
 [MANAGER] Dump result ...
-0.76user 0.02system 0:00.08elapsed 958%CPU (0avgtext+0avgdata 3248maxresident)k
-0inputs+128outputs (0major+1276minor)pagefaults 0swaps
+0.50user 0.01system 0:00.05elapsed 1001%CPU (0avgtext+0avgdata 3248maxresident)k
+0inputs+128outputs (0major+1269minor)pagefaults 0swaps
 ./checker/sanity testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.sanity
 Read testcase...
 Read output...

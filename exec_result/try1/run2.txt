@@ -44,7 +44,7 @@ Final statistic
 [LEGALIZER] Progress: 74% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 1.400803
+[TIMER] Elapsed time: 1.356282
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 810554039.247185
@@ -68,7 +68,7 @@ Final statistic
 [LEGALIZER] Initial Legalizer
 [BANKING] Cluster 4 Bit MBFF
 [LEGALIZER] Initial Legalizer
-[TIMER] Elapsed time: 3.869768
+[TIMER] Elapsed time: 4.790102
 [BANKING] [CLUSTER RESULT]
 [BANKING] 		FF1 : 619
 [BANKING] 		FF2 : 790
@@ -118,7 +118,7 @@ Final statistic
 [LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 0.379785
+[TIMER] Elapsed time: 0.383071
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 742992849.999018
@@ -171,8 +171,8 @@ Final statistic
 [CHECKER] Check On Site
 [CHECKER] All Check Pass
 [MANAGER] Dump result ...
-54.15user 3.13system 0:47.06elapsed 121%CPU (0avgtext+0avgdata 429172maxresident)k
-0inputs+144632outputs (0major+493618minor)pagefaults 0swaps
+54.63user 3.24system 0:47.61elapsed 121%CPU (0avgtext+0avgdata 429160maxresident)k
+8inputs+144632outputs (0major+493618minor)pagefaults 0swaps
 ./checker/sanity testcase/testcase1_0812.txt testcase/testcase1_0812.txt.out 2>&1 | tee testcase/testcase1_0812.txt.sanity
 Read testcase...
 Read output...
