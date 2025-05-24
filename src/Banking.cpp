@@ -16,7 +16,7 @@ void Banking::run()
     bitOrdering();
     Timer t = Timer();
     t.start();
-    if (bitOrder[0] != 1) // if cell with smallest cost isn't single bit. TODO: what is this for?
+    if (true || bitOrder[0] != 1) // if cell with smallest cost isn't single bit. TODO: what is this for?
     {
         doClustering();
     }
@@ -187,7 +187,7 @@ void Banking::doClustering()
         mgr.legalizer = new Legalizer(mgr);
         mgr.legalizer->initial();
 
-        for (size_t clkIDX = 0; clkIDX <= max_clk_idx; clkIDX++)
+        for (size_t clkIDX = 0; clkIDX <= max_clk_idx; clkIDX++) // clkidx: if exist multiple clock network
         {
             FFs.clear();
             for (const auto &pair : mgr.FF_Map)
@@ -236,7 +236,7 @@ void Banking::doClustering()
                         chooseCell = bitLib.second[chooseCellIndex];
                         medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
                         clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
-                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // TODO: to modify this to find position in other bin.
+                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)
                             continue;
 
                         can_place = true;

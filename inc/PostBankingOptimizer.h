@@ -3,16 +3,18 @@
 #include "Manager.h"
 class FF;
 class Manager;
-class postBankingOptimizer{
-    private:
-        Manager& mgr;
-    public:
-        explicit postBankingOptimizer(Manager&);
-        ~postBankingOptimizer();
-        void run();
+class postBankingOptimizer
+{
+private:
+    Manager &mgr;
 
-    private:
+public:
+    explicit postBankingOptimizer(Manager &);
+    ~postBankingOptimizer();
+    void run();
+    void changeCell();
 
+    // private:
 };
 
 #endif

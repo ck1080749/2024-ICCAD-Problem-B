@@ -173,44 +173,43 @@ void Legalizer::SliceRowsByGate()
 }
 
 Coor Legalizer::FindPlace(const Coor &coor, Cell *cell)
-{ // TODO: check nearby 9 bins
+{
     size_t closest_row_idx = FindClosestRow(coor);
     double minDisplacement = DBL_MAX;
     Coor newCoor = Coor(DBL_MAX, DBL_MAX);
 
     bool placeable = true;
-    PredictFFLGPlace(coor, cell, closest_row_idx, placeable, minDisplacement, newCoor);
+    PredictFFLGPlace(coor, cell, closest_row_idx, placeable, minDisplacement, newCoor); // check place at same row
 
-    for (int row_delta = 1; row_delta < 3; row_delta++) // expand the search region to facilitate merges
+    int down_row_idx = closest_row_idx - 1;
+    int up_row_idx = closest_row_idx + 1;
+
+    // local search down
+    while (down_row_idx >= 0 && std::abs(coor.y - rows[down_row_idx]->getStartCoor().y) < minDisplacement) // if row is valid and it is closer
     {
-        int down_row_idx = closest_row_idx - row_delta;
-        int up_row_idx = closest_row_idx + row_delta;
-
-        // local search down
-        while (down_row_idx >= 0 && std::abs(coor.y - rows[down_row_idx]->getStartCoor().y) < minDisplacement)
+        if (!rows[down_row_idx]->hasCell(cell)) // if not rejected by the row before
         {
-            if (!rows[down_row_idx]->hasCell(cell))
-            {
-                placeable = true;
-                PredictFFLGPlace(coor, cell, down_row_idx, placeable, minDisplacement, newCoor);
-                if (!placeable)
-                    rows[down_row_idx]->addRejectCell(cell);
-            }
-            down_row_idx--;
+            placeable = true;
+            PredictFFLGPlace(coor, cell, down_row_idx, placeable, minDisplacement, newCoor);
+            if (!placeable)
+                rows[down_row_idx]->addRejectCell(cell); // which means "we don't have place for this kind of cell")
         }
-        // local search up
-        while (up_row_idx < (int)rows.size() && std::abs(coor.y - rows[up_row_idx]->getStartCoor().y) < minDisplacement)
-        {
-            if (!rows[up_row_idx]->hasCell(cell))
-            {
-                placeable = true;
-                PredictFFLGPlace(coor, cell, up_row_idx, placeable, minDisplacement, newCoor);
-                if (!placeable)
-                    rows[up_row_idx]->addRejectCell(cell);
-            }
-            up_row_idx++;
-        }
+        down_row_idx--;
     }
+
+    // local search up
+    while (up_row_idx < (int)rows.size() && std::abs(coor.y - rows[up_row_idx]->getStartCoor().y) < minDisplacement)
+    {
+        if (!rows[up_row_idx]->hasCell(cell))
+        {
+            placeable = true;
+            PredictFFLGPlace(coor, cell, up_row_idx, placeable, minDisplacement, newCoor);
+            if (!placeable)
+                rows[up_row_idx]->addRejectCell(cell);
+        }
+        up_row_idx++;
+    }
+
     return newCoor;
 }
 
@@ -250,7 +249,7 @@ void Legalizer::Tetris()
         if(costA != costB)
             return costA > costB;
         else
-            return a->getTNS() > b->getTNS(); });
+            return a->getTNS() > b->getTNS(); }); // sort the ffs using nonincreasing cost
 
     // start to legalize all ff
     size_t total = ffs.size();
@@ -486,7 +485,7 @@ int Legalizer::FindClosestSubrow(Node *ff, Row *row)
     return subrows.size() - 1;
 }
 
-void Legalizer::PredictFFLGPlace(const Coor &coor, Cell *cell, size_t row_idx, bool &placeable, double &minDisplacement, Coor &newCoor)
+void Legalizer::PredictFFLGPlace(const Coor &coor, Cell *cell, size_t row_idx, bool &placeable, double &minDisplacement, Coor &newCoor) // TODO: how to increase search region?
 {
     const auto &subrows = rows[row_idx]->getSubrows();
     bool skip = false;
@@ -497,10 +496,10 @@ void Legalizer::PredictFFLGPlace(const Coor &coor, Cell *cell, size_t row_idx, b
         const auto &subrow = subrows[i];
         if (subrow->hasCell(cell))
             continue;
-        double alignedStartX = rows[row_idx]->getStartCoor().x + std::ceil((int)(subrow->getStartX() - rows[row_idx]->getStartCoor().x) / rows[row_idx]->getSiteWidth()) * rows[row_idx]->getSiteWidth();
+        double alignedStartX = rows[row_idx]->getStartCoor().x + std::ceil((int)(subrow->getStartX() - rows[row_idx]->getStartCoor().x) / rows[row_idx]->getSiteWidth()) * rows[row_idx]->getSiteWidth(); // round and normalize the placement place
         bool subrowSkip = false;
         bool subrowCanPlace = false;
-        for (int x = alignedStartX; x <= subrow->getEndX() && x != rows[row_idx]->getEndX(); x += rows[row_idx]->getSiteWidth())
+        for (int x = alignedStartX; x <= subrow->getEndX() && x != rows[row_idx]->getEndX(); x += rows[row_idx]->getSiteWidth()) // if x within range, search site by site
         {
             Coor currCoor = Coor(x, rows[row_idx]->getStartCoor().y);
             if (getDisplacement(coor, currCoor) > minDisplacement) // if current placable pos is larger than minium position

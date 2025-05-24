@@ -25,10 +25,11 @@
 - [x] **choose a "best suiting cell" during `void Banking::doClustering()`, and further optimize in `postBankingOptimizer::run()`**
   - the other ff with lower score doesn't seems to produce better results though... maybe scoring is really good?
   - changed to "move to an inferior cell if cannot find somewhere to place" -> doesn't seems to have sig result too.
-- [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins" (in `Legalizer::PredictFFLGPlace()`)
+- [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins" (in `Legalizer::PredictFFLGPlace()`) -> don't see anything related to it.
 - [ ] examine the difference `postBankingOptimizer::run()` `Preprocess::optimalFFlocation()`
 - [ ] enlarge the choosing window size to enable more merging -> no presence of windows, how to modify?
-- [x] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) -> probably wont be better though.
+- [ ] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) -> how should we compare multiple FFs?
+- [ ] Modify the wire length topology in pre and post placement?
 ### report requirements
 - [ ] a block/ flow diagram
 - [ ] introduction of each test case
