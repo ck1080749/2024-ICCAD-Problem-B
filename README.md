@@ -14,7 +14,7 @@
 Should install Markdown Preview Mermaid Support in vscode
 
 ```mermaid
-flowchart TD;
+flowchart LR;
     A(Start)-->B(Parser);
     B-->C(Cell_library_Scoring);
     C-->D(Debanking_All_MBFF);
