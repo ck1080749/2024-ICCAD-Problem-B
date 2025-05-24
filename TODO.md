@@ -22,7 +22,8 @@
 - [*] ~~maybe we can slightly adjust the position of the combs~~
 
 ### final thoughts
-- [ ] **choose a "best suiting cell" during `void Banking::doClustering()`, and further optimize in `postBankingOptimizer::run()`**
+- [x] **choose a "best suiting cell" during `void Banking::doClustering()`, and further optimize in `postBankingOptimizer::run()`**
+  - since most of the testcase only has one avaliable ff per bit, basically no affect.
 - [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins" (in `Legalizer::FindPlace()`)
 - [ ] examine the difference `postBankingOptimizer::run()` `Preprocess::optimalFFlocation()`
 - [ ] enlarge the choosing window size to enable more merging -> no presence of windows, how to modify
