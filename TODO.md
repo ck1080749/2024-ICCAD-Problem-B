@@ -5,21 +5,21 @@
 (their procedure seems stable, i.e. every execution generates same result.)
 ### Basic ideas
 - [ ] modify optimization scheme
-- [*] ~~modify placement scheme~~
-- [*] ~~modify routing scheme~~
-- [*] ~~a more precise timing module and wire length estimator -> hard to modify under current structure.~~
+- [x] ~~modify placement scheme~~
+- [x] ~~modify routing scheme~~
+- [x] ~~a more precise timing module and wire length estimator -> hard to modify under current structure.~~
 ### Things that can be done:
-- [*] ~~The cost function is different (no density constraint in cost.)~~
+- [x] ~~The cost function is different (no density constraint in cost.)~~
 - [ ] mainly modify `Manager::preprocess()`, `Manager::banking()`, `Manager::postBankingOptimize()`,`Manager::detailplacement()` and something it used
-  - [*] `Manager::preprocess()`: nothing can be modified quickly
+  - [x] `Manager::preprocess()`: nothing can be modified quickly
   - [ ] `Manager::banking()`
   - [ ] `Manager::postBankingOptimize()`
   - [ ] `Manager::detailplacement()` -> prbably sholdn't do this
-- [*] ~~Timing model. originally use a weird model, now we can use FLUTE (`j29.pdf`, where to locate it?) to generate steiner points~~
-- [*] ~~use a analytical approach to find the proper estimated length (`an.pdf`, `Gradient` class and its constructor parameters: what is being feeded into the class?)~~
+- [x] ~~Timing model. originally use a weird model, now we can use FLUTE (`j29.pdf`, where to locate it?) to generate steiner points~~
+- [x] ~~use a analytical approach to find the proper estimated length (`an.pdf`, `Gradient` class and its constructor parameters: what is being feeded into the class?)~~
   - The HPWL measured in the `Preprocess::updateSlack()` is basically impossible to modify. but since it only includes two node (prev gate and current gate), there should not be a problem though.
   - harder to do under current scheme.
-- [*] ~~maybe we can slightly adjust the position of the combs~~
+- [x] ~~maybe we can slightly adjust the position of the combs~~
 
 ### final thoughts
 - [x] **choose a "best suiting cell" during `void Banking::doClustering()`, and further optimize in `postBankingOptimizer::run()`**
