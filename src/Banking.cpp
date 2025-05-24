@@ -177,8 +177,9 @@ void Banking::doClustering()
     for (const auto &bitLib : orderBitMap) // 1-bit->2-bit, 2-bit->+-bit...
     {
         // std::cerr << bitLib.second.size() << std::endl;
-        Cell *chooseCell = bitLib.second[0];   // choose the best performing cell (with lowest cost).
-        int targetBit = chooseCell->getBits(); // the cells in same bitLib should have same bit size.
+        // Cell *chooseCell = bitLib.second[0];   // choose the best performing cell (with lowest cost).
+        int targetBit = bitLib.second[0]->getBits(); // the cells in same bitLib should have same bit size.
+
         if (targetBit == 1)
             continue;
         DEBUG_BAN("Cluster " + std::to_string(targetBit) + " Bit MBFF");
@@ -226,10 +227,14 @@ void Banking::doClustering()
 
                 if (isChoose)
                 {
+                    int chooseCellIndex = 0;
+                    Coor medianCoor;
+                    Coor clusterCoor;
+                    Cell *chooseCell = bitLib.second[chooseCellIndex];
 
-                    Coor medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
-                    Coor clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
-                    if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)            // TODO: to modify this to find position in other bin.
+                    medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
+                    clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
+                    if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // TODO: to modify this to find position in other bin.
                         continue;
 
                     // if(mgr.getCostDiff(clusterCoor, chooseCell, FFToBank) > 0)

@@ -12,3 +12,4 @@ testcase/*.evaluator
 *.out
 doxyfile/
 .diff/
+exec_result/testIfIBrokeTheProgram/
