@@ -227,14 +227,23 @@ void Banking::doClustering()
 
                 if (isChoose)
                 {
-                    int chooseCellIndex = 0;
                     Coor medianCoor;
                     Coor clusterCoor;
-                    Cell *chooseCell = bitLib.second[chooseCellIndex];
+                    Cell *chooseCell;
+                    bool can_place = false;
+                    for (int chooseCellIndex = 0; chooseCellIndex < (int)bitLib.second.size(); chooseCellIndex++) // repeat until we found a placable cell or run out of options. from from lowest cost to highest
+                    {
+                        chooseCell = bitLib.second[chooseCellIndex];
+                        medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
+                        clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
+                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // TODO: to modify this to find position in other bin.
+                            continue;
 
-                    medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
-                    clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
-                    if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // TODO: to modify this to find position in other bin.
+                        can_place = true;
+                        break;
+                    }
+
+                    if (!can_place) // if cannot find a placable cell
                         continue;
 
                     // if(mgr.getCostDiff(clusterCoor, chooseCell, FFToBank) > 0)
