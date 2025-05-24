@@ -11,6 +11,11 @@
 ### Things that can be done:
 - [ ] The cost function is different (no density constraint in cost.)
 - [ ] mainly modify `Manager::preprocess()`, `Manager::banking()`, `Manager::postBankingOptimize()`,`Manager::detailplacement()`, `Manager::GetOverallCost()` and something it used
+  - [ ] `Manager::preprocess()`
+  - [ ] `Manager::banking()`
+  - [ ] `Manager::postBankingOptimize()`
+  - [ ] `Manager::detailplacement()`
+  - [ ] `Manager::GetOverallCost()` 
 - [ ] `Manager::libscoring()`, i've heard that they only choose "some" cell to place, maybe we should use all?
 - [ ] Timing model. originally use a weird model, now we can use FLUTE (`j29.pdf`, where to locate it?) to generate steiner points
 - [ ] use a analytical approach to find the proper estimated length (`an.pdf`, `Gradient` class and its constructor parameters: what is being feeded into the class?)
