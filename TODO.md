@@ -28,7 +28,7 @@
 - [ ] originally: if no where to place, don't merge -> can change to "Move to adjacent bins" (in `Legalizer::FindPlace()`)
 - [ ] examine the difference `postBankingOptimizer::run()` `Preprocess::optimalFFlocation()`
 - [ ] enlarge the choosing window size to enable more merging -> no presence of windows, how to modify?
-- [ ] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) 
+- [x] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) -> probably wont be better though.
 ### report requirements
 - [ ] a block/ flow diagram
 - [ ] introduction of each test case
