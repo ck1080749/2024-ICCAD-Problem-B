@@ -2,6 +2,7 @@
 * something something
 * [their collaboration note](https://hackmd.io/@coherent17/Hk1CdKACa#Taskflow-Simple-Usage-amp-Install)
 ## the todo list:
+(their procedure seems stable, i.e. every execution generates same result.)
 ### Basic ideas
 - [ ] modify optimization scheme
 - [ ] modify placement scheme

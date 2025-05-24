@@ -1,0 +1,195 @@
+chmod +x checker/sanity
+chmod +x checker/placement_checker
+time ./cadb_0015_final testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.log
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  3.35240  |   0.55422(%)  |
+| Power | 10.00000 | 591.24000 |  97.74550(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04704(%)  |
+|  Bin  | 10.00000 |  10.00000 |   1.65322(%)  |
+| Total |    -     | 604.87694 |   100.00(%)   |
+|  WNS  | 0.18313  |    TNS    |    0.33524    |
++-------+----------+-----------+---------------+
+
+Total number of FF : 4
+phase 1 step : 0
+TNS : 0.42
+Gradient Convergen at 2 iteration.
+Final statistic
+	Worst negative slack : 0.00
+	Total negative slack : 0.00
+	Average slack : 1.63
+	Maximum slack : 3.28
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Power | 10.00000 | 591.24000 |  99.95189(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04810(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 591.52454 |   100.00(%)   |
+|  WNS  | 0.00000  |    TNS    |    0.00000    |
++-------+----------+-----------+---------------+
+
+[LEGALIZER] Initial Legalizer
+[LEGALIZER] Load FF to Databse
+[LEGALIZER] Start Legalize FF
+[LEGALIZER] Progress: 50% completed
+[LEGALIZER] Progress: 75% completed
+[LEGALIZER] Progress: 100% completed
+[LEGALIZER] Write Back Legalize Coordinate
+[TIMER] Elapsed time: 0.000028
+[MANAGER] Run Evaluator...
+[MANAGER] Dump result ...
+[EVALUATOR] Score: 593.355909
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  1.83134  |   0.30864(%)  |
+| Power | 10.00000 | 591.24000 |  99.64340(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04795(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 593.35588 |   100.00(%)   |
+|  WNS  | 0.18313  |    TNS    |    0.18313    |
++-------+----------+-----------+---------------+
+
+[BANKING] Running cluster...
+[BANKING] [LIB MBFF SCORE]
+[BANKING] 		SVT_FF_1(1): 148.081136
+[BANKING] 		SVT_FF_2(2): 263.031408
+[TIMER] Elapsed time: 0.000004
+[BANKING] [CLUSTER RESULT]
+[BANKING] 		FF1 : 4
+[BANKING] 		FF2 : 0
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Power | 10.00000 | 591.24000 |  99.95189(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04810(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 591.52454 |   100.00(%)   |
+|  WNS  | 0.00000  |    TNS    |    0.00000    |
++-------+----------+-----------+---------------+
+
+[Post banking optimize]
+Slack statistic before Optimize
+	TNS : 0.00
+
+phase 1 step : 0
+Slack statistic after Optimize
+	TNS : 0.00
+
+
+Gradient Convergen at 0 iteration.
+Final statistic
+	TNS : 0.00
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Power | 10.00000 | 591.24000 |  99.95189(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04810(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 591.52454 |   100.00(%)   |
+|  WNS  | 0.00000  |    TNS    |    0.00000    |
++-------+----------+-----------+---------------+
+
+[LEGALIZER] Load FF to Databse
+[LEGALIZER] Start Legalize FF
+[LEGALIZER] Progress: 37% completed
+[LEGALIZER] Progress: 62% completed
+[LEGALIZER] Progress: 87% completed
+[LEGALIZER] Progress: 100% completed
+[LEGALIZER] Write Back Legalize Coordinate
+[TIMER] Elapsed time: 0.000026
+[MANAGER] Run Evaluator...
+[MANAGER] Dump result ...
+[EVALUATOR] Score: 726.830755
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 | 135.30622 |  18.61591(%)  |
+| Power | 10.00000 | 591.24000 |  81.34493(%)  |
+|  Area | 0.00000  |  0.28454  |   0.03914(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 726.83076 |   100.00(%)   |
+|  WNS  | 13.53062 |    TNS    |    13.53062   |
++-------+----------+-----------+---------------+
+
+[CHECKER] Start Checker
+[CHECKER] Check Die Boundary
+[CHECKER] Check Overlap
+[CHECKER] Check On Site
+[CHECKER] All Check Pass
+[DetailPlacement] Swap Sanity Checker
+[DetailPlacement] Running detail placement!
+[DetailPlacement] Build Global Rtree
+[DetailPlacement] Global Swap
+[DetailPlacement] Swap Sanity Checker
+[DetailPlacement] Global Swap
+[DetailPlacement] Swap Sanity Checker
+[DetailPlacement] Global Swap
+[DetailPlacement] Swap Sanity Checker
+[DetailPlacement] Global Swap
+[DetailPlacement] Swap Sanity Checker
+[DetailPlacement] Global Swap
+[DetailPlacement] Swap Sanity Checker
+[MANAGER] Run Evaluator...
+[MANAGER] Dump result ...
+[EVALUATOR] Score: 593.355909
++-------+----------+-----------+---------------+
+|  Cost |  Weight  |   Value   | Percentage(%) |
++-------+----------+-----------+---------------+
+|  TNS  | 10.00000 |  1.83134  |   0.30864(%)  |
+| Power | 10.00000 | 591.24000 |  99.64340(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04795(%)  |
+|  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
+| Total |    -     | 593.35588 |   100.00(%)   |
+|  WNS  | 0.18313  |    TNS    |    0.18313    |
++-------+----------+-----------+---------------+
+
+[CHECKER] Start Checker
+[CHECKER] Check Die Boundary
+[CHECKER] Check Overlap
+[CHECKER] Check On Site
+[CHECKER] All Check Pass
+[MANAGER] Dump result ...
+0.37user 0.01system 0:00.04elapsed 818%CPU (0avgtext+0avgdata 3276maxresident)k
+0inputs+128outputs (0major+1276minor)pagefaults 0swaps
+./checker/sanity testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.sanity
+Read testcase...
+Read output...
+Check Inst <name> <libcell> <x> <y> format...
+Check From/pin map To/pin  format...
+Start checking...
+check libType
+check pins are in design
+check pins are correct connected
+check same CLK for banking
+check netlist... step1
+check netlist... step2
+Checking pass!
+./checker/placement_checker testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.placement_checker
+[PLACEMENT CHECKER] start on site check ... 
+[PLACEMENT CHECKER] All FF are on site!!!
+[PLACEMENT CHECKER] start overlap check ... 
+[PLACEMENT CHECKER] All instance are not overlapped!!!
+[PLACEMENT CHECKER] Pass placement checker!!!
+./evaluator/preliminary-evaluator testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.evaluator
+Read Input:
+Read output...
+Check Inst <name> <libcell> <x> <y> format...
+Check From/pin map To/pin  format...
+
+Start checking...
+check libType
+check pins are in design
+check pins are correct connected
+check same CLK for banking
+check netlist... step1
+check netlist... step2
+update timing...
+Check pass! Scoring...
+Final score:593.355909347534
