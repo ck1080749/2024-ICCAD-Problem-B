@@ -11,3 +11,4 @@ testcase/*.evaluator
 *.png
 *.out
 doxyfile/
+.diff/
