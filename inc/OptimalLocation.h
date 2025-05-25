@@ -47,16 +47,16 @@ public:
     void getWeight(FF *MBFF, vector<double> &weight) override;
 };
 
-// class MyObjFunction : public objFunction
-// {
-// public:
-//     MyObjFunction(Manager &mgr, std::unordered_map<std::string, FF *> &FF_list,
-//                   std::unordered_map<string, int> &idx_map, int totalFF, std::vector<FF *> &FFs);
-//     ~MyObjFunction();
-//     double forward() override;
-//     vector<Coor> &backward(int step, bool onlyNegative) override;
-//     void getWeight(FF *MBFF, vector<double> &weight) override;
-// };
+class MyObjFunction : public objFunction
+{
+public:
+    MyObjFunction(Manager &mgr, std::unordered_map<std::string, FF *> &FF_list,
+                  std::unordered_map<string, int> &idx_map, int totalFF, std::vector<FF *> &FFs);
+    ~MyObjFunction();
+    double forward() override;
+    vector<Coor> &backward(int step, bool onlyNegative) override;
+    void getWeight(FF *MBFF, vector<double> &weight) override;
+};
 
 class Gradient
 {
