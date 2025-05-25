@@ -46,7 +46,7 @@ Final statistic
 [LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 4.797641
+[TIMER] Elapsed time: 4.868773
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 1466708.070623
@@ -70,65 +70,65 @@ Final statistic
 [LEGALIZER] Initial Legalizer
 [BANKING] Cluster 4 Bit MBFF
 [LEGALIZER] Initial Legalizer
-[TIMER] Elapsed time: 10.781849
+[TIMER] Elapsed time: 30.063697
 [BANKING] [CLUSTER RESULT]
-[BANKING] 		FF1 : 1290
-[BANKING] 		FF2 : 4289
-[BANKING] 		FF4 : 2824
+[BANKING] 		FF1 : 1284
+[BANKING] 		FF2 : 4310
+[BANKING] 		FF4 : 2815
 +-------+-------------+--------------+---------------+
 |  Cost |    Weight   |    Value     | Percentage(%) |
 +-------+-------------+--------------+---------------+
-|  TNS  |   10.00000  | 98116.18274  |  11.88698(%)  |
-| Power |  400.00000  | 165620.00000 |  20.06521(%)  |
-|  Area |   0.00000   | 561672.34560 |  68.04780(%)  |
+|  TNS  |   10.00000  | 98186.78115  |  11.89230(%)  |
+| Power |  400.00000  | 165710.00000 |  20.07067(%)  |
+|  Area |   0.00000   | 561735.82080 |  68.03702(%)  |
 |  Bin  | 10000.00000 |   0.00000    |   0.00000(%)  |
-| Total |      -      | 825408.52834 |   100.00(%)   |
-|  WNS  |   9.09021   |     TNS      |   9811.61827  |
+| Total |      -      | 825632.60195 |   100.00(%)   |
+|  WNS  |   9.09021   |     TNS      |   9818.67811  |
 +-------+-------------+--------------+---------------+
 
 [Post banking optimize]
 Slack statistic before Optimize
-	TNS : 9811.62
+	TNS : 9818.68
 
 phase 1 step : 0
 Slack statistic after Optimize
-	TNS : 7328.43
+	TNS : 7382.28
 
 
-Gradient Convergen at 12 iteration.
+Gradient Convergen at 19 iteration.
 Final statistic
-	TNS : 4881.92
+	TNS : 4875.38
 +-------+-------------+--------------+---------------+
 |  Cost |    Weight   |    Value     | Percentage(%) |
 +-------+-------------+--------------+---------------+
-|  TNS  |   10.00000  | 48819.18147  |   6.05613(%)  |
-| Power |  400.00000  | 165620.00000 |  20.54554(%)  |
-|  Area |   0.00000   | 561672.34560 |  69.67675(%)  |
-|  Bin  | 10000.00000 | 30000.00000  |   3.72156(%)  |
-| Total |      -      | 806111.52707 |   100.00(%)   |
-|  WNS  |   9.09021   |     TNS      |   4881.91814  |
+|  TNS  |   10.00000  | 48753.76675  |   6.04735(%)  |
+| Power |  400.00000  | 165710.00000 |  20.55446(%)  |
+|  Area |   0.00000   | 561735.82080 |  69.67701(%)  |
+|  Bin  | 10000.00000 | 30000.00000  |   3.72116(%)  |
+| Total |      -      | 806199.58755 |   100.00(%)   |
+|  WNS  |   9.09021   |     TNS      |   4875.37667  |
 +-------+-------------+--------------+---------------+
 
 [LEGALIZER] Load FF to Databse
 [LEGALIZER] Start Legalize FF
 [LEGALIZER] Progress: 25% completed
-[LEGALIZER] Progress: 49% completed
-[LEGALIZER] Progress: 74% completed
+[LEGALIZER] Progress: 50% completed
+[LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 1.875329
+[TIMER] Elapsed time: 1.980027
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
-[EVALUATOR] Score: 839681.237269
+[EVALUATOR] Score: 840690.367372
 +-------+-------------+--------------+---------------+
 |  Cost |    Weight   |    Value     | Percentage(%) |
 +-------+-------------+--------------+---------------+
-|  TNS  |   10.00000  | 94480.73911  |  11.49718(%)  |
-| Power |  400.00000  | 165620.00000 |  20.15398(%)  |
-|  Area |   0.00000   | 561672.34560 |  68.34883(%)  |
+|  TNS  |   10.00000  | 95842.05457  |  11.64137(%)  |
+| Power |  400.00000  | 165710.00000 |  20.12783(%)  |
+|  Area |   0.00000   | 561735.82080 |  68.23079(%)  |
 |  Bin  | 10000.00000 |   0.00000    |   0.00000(%)  |
-| Total |      -      | 821773.08471 |   100.00(%)   |
-|  WNS  |   20.39016  |     TNS      |   9448.07391  |
+| Total |      -      | 823287.87537 |   100.00(%)   |
+|  WNS  |   12.84549  |     TNS      |   9584.20545  |
 +-------+-------------+--------------+---------------+
 
 [CHECKER] Start Checker
@@ -151,16 +151,16 @@ Final statistic
 [DetailPlacement] Swap Sanity Checker
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
-[EVALUATOR] Score: 833984.723943
+[EVALUATOR] Score: 835430.968087
 +-------+-------------+--------------+---------------+
 |  Cost |    Weight   |    Value     | Percentage(%) |
 +-------+-------------+--------------+---------------+
-|  TNS  |   10.00000  | 91827.48970  |  11.21050(%)  |
-| Power |  400.00000  | 165620.00000 |  20.21926(%)  |
-|  Area |   0.00000   | 561672.34560 |  68.57022(%)  |
+|  TNS  |   10.00000  | 93602.07904  |  11.40031(%)  |
+| Power |  400.00000  | 165710.00000 |  20.18274(%)  |
+|  Area |   0.00000   | 561735.82080 |  68.41693(%)  |
 |  Bin  | 10000.00000 |   0.00000    |   0.00000(%)  |
-| Total |      -      | 819119.83530 |   100.00(%)   |
-|  WNS  |   20.39016  |     TNS      |   9182.74897  |
+| Total |      -      | 821047.89984 |   100.00(%)   |
+|  WNS  |   12.84549  |     TNS      |   9360.20790  |
 +-------+-------------+--------------+---------------+
 
 [CHECKER] Start Checker
@@ -169,8 +169,8 @@ Final statistic
 [CHECKER] Check On Site
 [CHECKER] All Check Pass
 [MANAGER] Dump result ...
-89.90user 4.78system 1:22.89elapsed 114%CPU (0avgtext+0avgdata 656868maxresident)k
-8inputs+214032outputs (0major+839133minor)pagefaults 0swaps
+109.97user 4.65system 1:42.29elapsed 112%CPU (0avgtext+0avgdata 656868maxresident)k
+0inputs+214024outputs (0major+849542minor)pagefaults 0swaps
 ./checker/sanity testcase/testcase2_0812.txt testcase/testcase2_0812.txt.out 2>&1 | tee testcase/testcase2_0812.txt.sanity
 Read testcase...
 Read output...
@@ -205,4 +205,4 @@ check netlist... step1
 check netlist... step2
 update timing...
 Check pass! Scoring...
-Final score:833984.723943055
+Final score:835430.968087047

@@ -39,7 +39,7 @@ Final statistic
 [LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 0.000026
+[TIMER] Elapsed time: 0.000024
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
 [EVALUATOR] Score: 593.355909
@@ -58,7 +58,9 @@ Final statistic
 [BANKING] [LIB MBFF SCORE]
 [BANKING] 		SVT_FF_1(1): 148.081136
 [BANKING] 		SVT_FF_2(2): 263.031408
-[TIMER] Elapsed time: 0.000007
+[BANKING] Cluster 2 Bit MBFF
+[LEGALIZER] Initial Legalizer
+[TIMER] Elapsed time: 0.000177
 [BANKING] [CLUSTER RESULT]
 [BANKING] 		FF1 : 4
 [BANKING] 		FF2 : 0
@@ -98,24 +100,23 @@ Final statistic
 
 [LEGALIZER] Load FF to Databse
 [LEGALIZER] Start Legalize FF
-[LEGALIZER] Progress: 37% completed
-[LEGALIZER] Progress: 62% completed
-[LEGALIZER] Progress: 87% completed
+[LEGALIZER] Progress: 50% completed
+[LEGALIZER] Progress: 75% completed
 [LEGALIZER] Progress: 100% completed
 [LEGALIZER] Write Back Legalize Coordinate
-[TIMER] Elapsed time: 0.000028
+[TIMER] Elapsed time: 0.000032
 [MANAGER] Run Evaluator...
 [MANAGER] Dump result ...
-[EVALUATOR] Score: 726.830755
+[EVALUATOR] Score: 593.355909
 +-------+----------+-----------+---------------+
 |  Cost |  Weight  |   Value   | Percentage(%) |
 +-------+----------+-----------+---------------+
-|  TNS  | 10.00000 | 135.30622 |  18.61591(%)  |
-| Power | 10.00000 | 591.24000 |  81.34493(%)  |
-|  Area | 0.00000  |  0.28454  |   0.03914(%)  |
+|  TNS  | 10.00000 |  1.83134  |   0.30864(%)  |
+| Power | 10.00000 | 591.24000 |  99.64340(%)  |
+|  Area | 0.00000  |  0.28454  |   0.04795(%)  |
 |  Bin  | 10.00000 |  0.00000  |   0.00000(%)  |
-| Total |    -     | 726.83076 |   100.00(%)   |
-|  WNS  | 13.53062 |    TNS    |    13.53062   |
+| Total |    -     | 593.35588 |   100.00(%)   |
+|  WNS  | 0.18313  |    TNS    |    0.18313    |
 +-------+----------+-----------+---------------+
 
 [CHECKER] Start Checker
@@ -156,8 +157,8 @@ Final statistic
 [CHECKER] Check On Site
 [CHECKER] All Check Pass
 [MANAGER] Dump result ...
-0.50user 0.01system 0:00.05elapsed 1001%CPU (0avgtext+0avgdata 3248maxresident)k
-0inputs+128outputs (0major+1269minor)pagefaults 0swaps
+0.28user 0.02system 0:00.03elapsed 888%CPU (0avgtext+0avgdata 3252maxresident)k
+0inputs+128outputs (0major+1276minor)pagefaults 0swaps
 ./checker/sanity testcase/sampleCase testcase/sampleCase.out 2>&1 | tee testcase/sampleCase.sanity
 Read testcase...
 Read output...

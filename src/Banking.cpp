@@ -227,23 +227,31 @@ void Banking::doClustering()
 
                 if (isChoose)
                 {
-                    Coor medianCoor;
-                    Coor clusterCoor;
-                    Cell *chooseCell;
+                    Coor medianCoor, curMedianCoor;
+                    Coor clusterCoor, curClusterCoor;
+                    Cell *chooseCell, *curCell;
                     bool can_place = false;
+                    double best_cost = 0, current_cost;
                     for (int chooseCellIndex = 0; chooseCellIndex < (int)bitLib.second.size(); chooseCellIndex++) // repeat until we found a placable cell or run out of options. from from lowest cost to highest
                     {
-                        chooseCell = bitLib.second[chooseCellIndex];
-                        medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
-                        clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
-                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // no position for the cell
+                        curCell = bitLib.second[chooseCellIndex];
+                        curMedianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
+                        curClusterCoor = mgr.legalizer->FindPlace(curMedianCoor, curCell); // find a place to place near the median position
+                        if (curClusterCoor.x == DBL_MAX && curClusterCoor.y == DBL_MAX)    // no position for the cell
                             continue;
 
-                        if (CostCompare(clusterCoor, chooseCell, FFToBank) < 0) // if no improvement, try other option
+                        current_cost = CostCompare(curClusterCoor, curCell, FFToBank);
+                        if (current_cost < 0) // if no improvement, try other option
                             continue;
-
-                        can_place = true;
-                        break;
+                        else if (current_cost > best_cost)
+                        {
+                            can_place = true;
+                            chooseCell = curCell;
+                            best_cost = current_cost;
+                            // medianCoor = curMedianCoor;
+                            clusterCoor = curClusterCoor;
+                        }
+                        // break;
                     }
 
                     if (!can_place) // if cannot find a placable cell
