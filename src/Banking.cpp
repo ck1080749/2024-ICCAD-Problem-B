@@ -159,7 +159,7 @@ double Banking::CostCompare(const Coor clusterCoor, Cell *chooseCell, std::vecto
         increaseTNS += displacementAffect;
     }
     costOptimize -= mgr.alpha * increaseTNS;
-    // if(costOptimize > -100 && costOptimize < 0) std::cout << costOptimize << std::endl;
+    //  if(costOptimize > -100 && costOptimize < 0) std::cout << costOptimize << std::endl;
     return costOptimize;
 }
 
@@ -236,7 +236,10 @@ void Banking::doClustering()
                         chooseCell = bitLib.second[chooseCellIndex];
                         medianCoor = getMedian(toRemoveFFs);                            // to remove ff: the chosen ones.
                         clusterCoor = mgr.legalizer->FindPlace(medianCoor, chooseCell); // find a place to place near the median position
-                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)
+                        if (clusterCoor.x == DBL_MAX && clusterCoor.y == DBL_MAX)       // no position for the cell
+                            continue;
+
+                        if (CostCompare(clusterCoor, chooseCell, FFToBank) < 0) // if no improvement, try other option
                             continue;
 
                         can_place = true;
@@ -248,8 +251,6 @@ void Banking::doClustering()
 
                     // if(mgr.getCostDiff(clusterCoor, chooseCell, FFToBank) > 0)
                     //     continue;
-                    if (CostCompare(clusterCoor, chooseCell, FFToBank) < 0) // if no improvement, don' apply
-                        continue;
 
                     // a new FF is chosen, legalize it. DO NOT MODIFY!
                     FF *newFF = mgr.bankFF(clusterCoor, chooseCell, FFToBank);
