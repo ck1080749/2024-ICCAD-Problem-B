@@ -29,7 +29,10 @@
 - [ ] examine the difference `postBankingOptimizer::run()` `Preprocess::optimalFFlocation()`
 - [ ] enlarge the choosing window size to enable more merging -> no presence of windows, how to modify?
 - [ ] in `Banking::chooseCandidateFF(...)`: maybe try more combination? (1+2 cannot, 2+3 cannot; but can 1+3 condition) -> how should we compare multiple FFs?
+- [ ] 
 - [ ] Modify the wire length topology in pre and post placement?
+- [ ] study the gradient optimizers 
+- [ ] study the meanshift
 ### report requirements
 - [ ] a block/ flow diagram
 - [ ] introduction of each test case
@@ -63,3 +66,8 @@
 
 ## done things:
 * they choose the best single bit ff when legalize, 
+
+## other one's result
+* Cost-compare: after optimize?
+* bin-density: just debanked?
+* slightly modified, the cost is also slightly better from the original
